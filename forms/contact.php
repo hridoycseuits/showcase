@@ -40,14 +40,44 @@
   // echo $contact->send();
 //----
 
-  $to = receiving_email_address;
-  $subject = $_POST['subject'];
-  $message = $_POST['message'];
-  $from = $_POST['email'];
-  $headers = "From:" . $from\r\n;
-  $header .= "MIME-Version: 1.0\r\n";
-  $header .= "Content-type: text/html\r\n";
+  // $to = receiving_email_address;
+  // $subject = $_POST['subject'];
+  // $message = $_POST['message'];
+  // $from = $_POST['email'];
+  // $headers = "From:" . $from\r\n;
+  // $header .= "MIME-Version: 1.0\r\n";
+  // $header .= "Content-type: text/html\r\n";
 
-  mail($to,$subject,$message,$headers)
+  // mail($to,$subject,$message,$headers)
+
+
+  <?php
+  error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+if (isset($_POST['email'])) {
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+    $from = $_POST['email'];
+    $name = $_POST['name'];
+    $to = $_POST['destinationEmail'];
+
+    $headers = "From: " + $from;
+
+    // Validate the email address
+    if (filter_var($to, FILTER_VALIDATE_EMAIL)) {
+        if (mail($to, $subject, $message, $headers)) {
+            echo "Email sent successfully to $to!";
+        } else {
+            echo "Failed to send email.";
+        }
+    } else {
+        echo "Invalid email address.";
+    }
+} else {
+    echo "No email address provided.";
+}
+?>
+
 
 ?>

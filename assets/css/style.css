@@ -1028,3 +1028,11 @@ section .container {
 .credits a:hover {
   color: #fff;
 }
+
+/* .img-fluid{
+  width: auto;
+  height: auto;
+
+  max-height: 44%;
+  object-fit: contain;
+} */
